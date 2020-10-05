@@ -1,5 +1,7 @@
 from typing import Callable, Iterable, Set, Union
 
+import emoji
+
 
 class Compose(object):
     def __init__(self, transforms: Iterable[Callable[[str], str]]) -> None:
@@ -40,3 +42,11 @@ class WordRemove(object):
             self._words_to_remove = {obj}
         else:
             self._words_to_remove = set(obj)
+
+
+class Demojize(object):
+    def __init__(self, use_aliases: bool = False) -> None:
+        self.use_aliases = use_aliases
+
+    def __call__(self, text: str) -> str:
+        return emoji.demojize(text, use_aliases=self.use_aliases)
