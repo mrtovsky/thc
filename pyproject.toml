@@ -6,6 +6,8 @@ authors = ["mrtovsky <mrtovsky@protonmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.7"
+torch = "^1.6.0"
+ipykernel = "^5.3.4"
 
 [tool.poetry.dev-dependencies]
 pytest = "^4.6"
