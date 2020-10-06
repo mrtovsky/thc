@@ -1,4 +1,4 @@
-from typing import Callable, Iterable, Set, Union
+from typing import Callable, Iterable, Optional, Set, Tuple, Union
 
 import emoji
 
@@ -45,8 +45,18 @@ class WordRemove(object):
 
 
 class Demojize(object):
-    def __init__(self, use_aliases: bool = False) -> None:
+    def __init__(
+        self,
+        use_aliases: bool = False,
+        delimiters: Optional[Tuple[str, str]] = None,
+    ) -> None:
         self.use_aliases = use_aliases
 
+        if delimiters is None:
+            delimiters = (" :", ":")
+        self.delimiters = delimiters
+
     def __call__(self, text: str) -> str:
-        return emoji.demojize(text, use_aliases=self.use_aliases)
+        return emoji.demojize(
+            text, use_aliases=self.use_aliases, delimiters=self.delimiters
+        )
