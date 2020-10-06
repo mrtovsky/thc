@@ -19,9 +19,10 @@ class DistilBertClassifier(nn.Module):
         input_ids: torch.Tensor,
         attention_mask: Optional[torch.Tensor] = None,
     ) -> torch.Tensor:
-        _, pooled = self.distilbert(
+        distilbert_outputs = self.distilbert(
             input_ids=input_ids, attention_mask=attention_mask
         )
+        pooled = distilbert_outputs[0][:, 0, :]
         output = self.fc(self.dropout(pooled))
 
         return output
