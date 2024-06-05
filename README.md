@@ -84,7 +84,7 @@ Then, enter this directory and create a **.env** file that stores environment
 variable with the cloned repository path:
 
 ```bash
-cd footvid/
+cd thc/
 touch .env
 printf "REPOSITORY_PATH=\"$(pwd)\"" >> .env
 ```
